@@ -1,15 +1,15 @@
 # 第一阶段：构建前端主题
 FROM node:20 AS frontend-builder
 
-RUN apt-get update && apt-get install -y git python3 make g++ && rm -rf /var/lib/apt/lists/*
+RUN npm install -g pnpm
 
 WORKDIR /build
 
 # 克隆并构建 2024 主题（你的仓库）
 RUN git clone --depth 1 https://github.com/DuranceX/FileCodeBoxFronted.git /build/fronted-2024 && \
     cd /build/fronted-2024 && \
-    npm install && \
-    npm run build
+    pnpm install && \
+    pnpm run build
 
 # 克隆并构建 2023 主题
 RUN git clone --depth 1 https://github.com/vastsa/FileCodeBoxFronted2023.git /build/fronted-2023 && \

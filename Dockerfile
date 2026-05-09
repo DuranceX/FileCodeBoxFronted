@@ -1,7 +1,7 @@
 # 第一阶段：构建前端主题
-FROM node:20-alpine AS frontend-builder
+FROM node:20 AS frontend-builder
 
-RUN apk add --no-cache git python3 make g++
+RUN apt-get update && apt-get install -y git python3 make g++ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
 
